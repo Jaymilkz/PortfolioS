@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Personal site — gaming, isolation, music, studying.">
+<meta name="theme-color" content="#0B0C10">
+<meta property="og:title" content="Jay">
+<meta property="og:description" content="Personal site — gaming, isolation, music, studying.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238B7CF6'/%3E%3Cstop offset='1' stop-color='%235EA8FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='12' cy='12' r='10' fill='url(%23g)'/%3E%3C/svg%3E">
+<title>About — Jay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0C10;
+    --text:#ECEDF0;
+    --mute:#9A9DA6;
+    --line:rgba(255,255,255,0.09);
+    --glass:rgba(255,255,255,0.04);
+    --violet:#8B7CF6;
+    --blue:#5EA8FF;
+    --pink:#F472B6;
+    --teal:#34D1B5;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .name-outlined{position:relative;display:inline-block;}
+  .name-outlined::after{
+    content:'Jay';
+    position:absolute;
+    inset:0;
+    background:none;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke:1.5px rgba(139,124,246,0.45);
+    pointer-events:none;
+  }
+  h1,h2{font-family:'Outfit',sans-serif;letter-spacing:-0.02em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+
+  :focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+  }
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+
+  .glow-field{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:0.28;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+
+  .blob-1{width:420px;height:420px;background:var(--violet);top:-180px;left:-180px;}
+  .blob-2{width:380px;height:380px;background:var(--blue);top:200px;right:-160px;animation-delay:-6s;}
+  .blob-3{width:340px;height:340px;background:var(--pink);bottom:-100px;left:30%;animation-delay:-12s;}
+
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(40px,-30px) scale(1.08);}
+  }
+
+  .grain{
+    position:fixed;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .hero{padding:120px 0 90px;position:relative;}
+
+  .eyebrow{
+    font-size:13px;
+    color:var(--violet);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+  }
+
+  .hero h1{
+    font-size:clamp(2.6rem,7vw,4.8rem);
+    line-height:1.04;
+    margin-bottom:22px;
+    font-weight:700;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards, heroGlow 3s ease-in-out infinite alternate;
+    animation-delay:0.08s, 0.8s;
+    background:linear-gradient(135deg,var(--violet),var(--blue),var(--pink));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    filter:drop-shadow(0 0 18px rgba(139,124,246,0.55)) drop-shadow(0 0 40px rgba(94,168,255,0.3));
+  }
+
+  @keyframes heroGlow{
+    0%{filter:drop-shadow(0 0 14px rgba(139,124,246,0.5)) drop-shadow(0 0 35px rgba(94,168,255,0.25));}
+    100%{filter:drop-shadow(0 0 28px rgba(139,124,246,0.85)) drop-shadow(0 0 60px rgba(244,114,182,0.4));}
+  }
+
+  .cycle-line{
+    font-family:'Outfit',sans-serif;
+    font-size:18px;
+    font-weight:500;
+    margin-bottom:30px;
+    min-height:26px;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+    animation-delay:0.16s;
+  }
+
+  .cycle-line .mono{color:var(--mute);font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:14px;}
+
+  #cycleWord{color:var(--violet);transition:color 0.3s ease;}
+
+  .cursor{
+    display:inline-block;
+    width:2px;
+    height:18px;
+    background:var(--violet);
+    margin-left:3px;
+    vertical-align:middle;
+    animation:blink 1s step-end infinite;
+    transition:background 0.3s ease;
+  }
+
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero-bio{
+    font-size:16px;
+    color:var(--mute);
+    max-width:540px;
+    margin-bottom:36px;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+    animation-delay:0.24s;
+  }
+
+  .hero-quote{
+    font-family:'Outfit',sans-serif;
+    font-size:15px;
+    font-style:italic;
+    color:var(--mute);
+    border-left:2px solid var(--violet);
+    padding:10px 16px;
+    margin-bottom:32px;
+    max-width:480px;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+    animation-delay:0.28s;
+    line-height:1.6;
+  }
+
+  .quote-attr{
+    display:block;
+    margin-top:8px;
+    font-size:12px;
+    font-style:normal;
+    color:var(--violet);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    margin-bottom:30px;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+    animation-delay:0.28s;
+  }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    font-size:14px;
+    font-weight:600;
+    border-radius:30px;
+    background:linear-gradient(135deg,var(--violet),var(--blue));
+    color:#0B0C10;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(139,124,246,0.35);
+  }
+
+  .btn-primary svg{width:14px;height:14px;}
+
+  .social-row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+    animation-delay:0.36s;
+  }
+
+  .social-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:500;
+    border:1px solid var(--line);
+    border-radius:30px;
+    background:var(--glass);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    transition:border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+
+  .social-link:hover{
+    border-color:rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.07);
+    transform:translateY(-2px);
+  }
+
+  .social-link svg{width:14px;height:14px;}
+
+  .scroll-cue{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0.45;
+    animation:bounce 2.2s ease-in-out infinite;
+  }
+
+  @keyframes bounce{
+    0%,100%{transform:translate(-50%,0);}
+    50%{transform:translate(-50%,6px);}
+  }
+
+  .scroll-cue svg{width:18px;height:18px;stroke:var(--text);}
+
+  .divider{
+    width:100%;
+    max-width:880px;
+    margin:0 auto;
+    padding:0 24px;
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    opacity:0.4;
+  }
+
+  .divider::before,.divider::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--violet),var(--blue),transparent);
+  }
+
+  .divider span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--mute);
+    white-space:nowrap;
+    letter-spacing:0.1em;
+  }
+    padding:40px 0 110px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  section.interests.visible{opacity:1;transform:translateY(0);}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+    margin-bottom:36px;
+  }
+
+  .section-head h2{font-size:1.6rem;font-weight:600;}
+  .section-head .mono{font-size:12px;color:var(--mute);}
+
+  .interest-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+
+  .interest-card{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:var(--glass);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    padding:26px;
+    transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .interest-card:hover{transform:translateY(-4px);}
+
+  .card-violet:hover{box-shadow:0 22px 50px rgba(139,124,246,0.22);border-color:rgba(139,124,246,0.4);}
+  .card-blue:hover{box-shadow:0 22px 50px rgba(94,168,255,0.22);border-color:rgba(94,168,255,0.4);}
+  .card-pink:hover{box-shadow:0 22px 50px rgba(244,114,182,0.22);border-color:rgba(244,114,182,0.4);}
+  .card-teal:hover{box-shadow:0 22px 50px rgba(52,209,181,0.22);border-color:rgba(52,209,181,0.4);}
+
+  .icon-circle{
+    width:42px;height:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+    transition:transform 0.3s ease;
+  }
+
+  .interest-card:hover .icon-circle{
+    transform:scale(1.08) rotate(-4deg);
+  }
+
+  .card-violet .icon-circle{background:linear-gradient(135deg,#8B7CF6,#6C5CE7);}
+  .card-blue .icon-circle{background:linear-gradient(135deg,#5EA8FF,#3D7EDB);}
+  .card-pink .icon-circle{background:linear-gradient(135deg,#F472B6,#DB5C97);}
+  .card-teal .icon-circle{background:linear-gradient(135deg,#34D1B5,#1FA98F);}
+
+  .icon-circle svg{width:19px;height:19px;stroke:#fff;}
+
+  .interest-card h3{
+    font-family:'Outfit',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+
+  .interest-card p{
+    font-size:13.5px;
+    color:var(--mute);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px 0 60px;
+  }
+
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:12.5px;
+    color:var(--mute);
+  }
+
+  .footer-social{display:flex;gap:18px;}
+  .footer-social a:hover{color:var(--text);}
+
+  @media (max-width:640px){
+    .interest-grid{grid-template-columns:1fr;}
+    .blob{filter:blur(50px);opacity:0.22;}
+    .hero{padding:90px 0 70px;}
+    .scroll-cue{display:none;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .eyebrow,.hero h1,.cycle-line,.hero-bio,.social-row{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <div class="glow-field">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow mono">Hey, I'm</span>
+      <h1 class="name-outlined">Jay</h1>
+      <div class="cycle-line">
+        <span class="mono">into:</span> <span id="cycleWord">gaming</span><span class="cursor" id="cursor"></span>
+      </div>
+      <p class="hero-bio">
+        Hey there! Thanks for visiting my portfolio.
+      </p>
+      <blockquote class="hero-quote">"The person you become is built by the choices you make when nobody is watching."<cite class="quote-attr">— Jay</cite></blockquote>
+      <div class="social-row">
+        <a href="https://discord.gg/gKw4nEsa" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8c.5-2 2-3.5 4-4h6c2 .5 3.5 2 4 4l1 7c.3 2-1 3-2.5 2l-1.5-1c-3 1-6 1-9 0l-1.5 1C4 18 2.7 17 3 15z"/><circle cx="9" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/></svg>
+          Discord
+        </a>
+        <a href="https://www.tiktok.com/@itsjay.wav" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.7V16a6 6 0 1 1-6-6"/></svg>
+          TikTok
+        </a>
+        <a href="https://open.spotify.com/user/31sg3tnq6sqadmtacopcptf57p5y?si=GtjO-PqgSxeoVP-mtgxTpA" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M7.5 14.5c3-1 6.5-1 9 .5M7.5 11.5c4-1.5 8-1.5 11 0M8.5 17c2-.7 4.5-.7 6.5.3"/></svg>
+          Spotify
+        </a>
+        <a href="mailto:jayarcristalszn@gmail.com" class="social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <section class="interests">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I'm into</h2>
+        <span class="mono">INTERESTS</span>
+      </div>
+      <div class="interest-grid">
+
+        <div class="interest-card card-violet">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="11" r="0.8" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Gaming</h3>
+          <p>Down for a good game whenever there's time to sink into one — story-driven or competitive, doesn't matter.</p>
+        </div>
+
+        <div class="interest-card card-blue">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>
+          </div>
+          <h3>Isolation</h3>
+          <p>Comfortable with quiet, solo time — space to think, recharge, and just exist without noise.</p>
+        </div>
+
+        <div class="interest-card card-pink">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+          </div>
+          <h3>Music</h3>
+          <p>Always got something playing — music as background, mood-setter, and focus tool.</p>
+        </div>
+
+        <div class="interest-card card-teal">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v15a2 2 0 0 0-2-2H2z"/><path d="M22 5a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2v15a2 2 0 0 1 2-2h8z"/></svg>
+          </div>
+          <h3>Studying</h3>
+          <p>Putting in the hours when it's time to lock in and actually learn something.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="mono">© 2026 JAY</span>
+      <div class="footer-social">
+        <a href="https://discord.gg/gKw4nEsa" target="_blank" rel="noopener">Discord</a>
+        <a href="https://www.tiktok.com/@itsjay.wav" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://open.spotify.com/user/31sg3tnq6sqadmtacopcptf57p5y?si=GtjO-PqgSxeoVP-mtgxTpA" target="_blank" rel="noopener">Spotify</a>
+        <a href="mailto:jayarcristalszn@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const words = ["gaming", "isolation", "music", "studying"];
+  const colors = ["#8B7CF6", "#5EA8FF", "#F472B6", "#34D1B5"];
+  const el = document.getElementById('cycleWord');
+  const cursor = document.getElementById('cursor');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(!reduceMotion){
+    let wi = 0, ci = words[0].length, deleting = false;
+
+    function setColor(){
+      el.style.color = colors[wi];
+      cursor.style.background = colors[wi];
+    }
+    setColor();
+
+    function tick(){
+      const word = words[wi];
+      if(!deleting){
+        ci++;
+        el.textContent = word.slice(0, ci);
+        if(ci === word.length){
+          deleting = true;
+          setTimeout(tick, 1400);
+          return;
+        }
+      } else {
+        ci--;
+        el.textContent = word.slice(0, ci);
+        if(ci === 0){
+          deleting = false;
+          wi = (wi + 1) % words.length;
+          setColor();
+        }
+      }
+      setTimeout(tick, deleting ? 35 : 60);
+    }
+    setTimeout(tick, 1400);
+  }
+
+  const sec = document.querySelector('section.interests');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  observer.observe(sec);
+</script>
+
+</body>
+</html>
