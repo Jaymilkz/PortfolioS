@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0C10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238B7CF6'/%3E%3Cstop offset='1' stop-color='%235EA8FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='12' cy='12' r='10' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Music — Jay</title>
+<style>
+  :root{--bg:#0B0C10;--text:#ECEDF0;--mute:#9A9DA6;--line:rgba(255,255,255,0.09);--glass:rgba(255,255,255,0.04);--violet:#8B7CF6;--blue:#5EA8FF;--pink:#F472B6;--teal:#34D1B5;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  h1,h2{font-family:'Outfit',sans-serif;letter-spacing:-0.02em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+  .glow-field{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.28;animation:drift 22s ease-in-out infinite alternate;}
+  .blob-1{width:420px;height:420px;background:var(--violet);top:-180px;left:-180px;}
+  .blob-2{width:380px;height:380px;background:var(--blue);top:200px;right:-160px;animation-delay:-6s;}
+  .blob-3{width:340px;height:340px;background:var(--pink);bottom:-100px;left:30%;animation-delay:-12s;}
+  @keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,-30px) scale(1.08);}}
+  .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .hamburger-nav{position:fixed;top:20px;right:20px;z-index:999;}
+  .burger-btn{background:rgba(255,255,255,0.06);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background 0.2s,border-color 0.2s;}
+  .burger-btn:hover{background:rgba(139,124,246,0.15);border-color:rgba(139,124,246,0.4);}
+  .burger-btn span{display:block;width:18px;height:1.5px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;}
+  .burger-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .burger-btn.open span:nth-child(2){opacity:0;}
+  .burger-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .nav-menu{position:absolute;top:54px;right:0;background:rgba(15,15,22,0.92);border:1px solid var(--line);border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:4px;min-width:160px;backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity 0.25s,transform 0.25s;}
+  .nav-menu.open{opacity:1;pointer-events:all;transform:translateY(0);}
+  .nav-link{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mute);padding:10px 14px;border-radius:10px;transition:background 0.2s,color 0.2s;letter-spacing:0.04em;}
+  .nav-link:hover,.nav-link.active{background:rgba(139,124,246,0.12);color:var(--text);}
+  footer{border-top:1px solid var(--line);padding:30px 0 60px;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:12.5px;color:var(--mute);}
+  @media(max-width:640px){.blob{filter:blur(50px);opacity:0.22;}}
+  .page{padding:120px 0 90px;}
+  .page-eyebrow{font-size:13px;color:var(--violet);letter-spacing:0.08em;text-transform:uppercase;display:block;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;}
+  .page-head{margin-bottom:48px;opacity:0;animation:fadeUp 0.7s ease forwards;}
+  .page-head h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:700;background:linear-gradient(135deg,var(--pink),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .section-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;margin-top:40px;}
+  .tracks-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .track-embed{width:100%;height:80px;border-radius:14px;border:none;opacity:0;animation:fadeUp 0.7s ease forwards;}
+  .track-embed:nth-child(1){animation-delay:0.05s;}
+  .track-embed:nth-child(2){animation-delay:0.1s;}
+  .track-embed:nth-child(3){animation-delay:0.15s;}
+  .track-embed:nth-child(4){animation-delay:0.2s;}
+  .track-embed:nth-child(5){animation-delay:0.25s;}
+  .track-embed:nth-child(6){animation-delay:0.3s;}
+  .track-embed:nth-child(7){animation-delay:0.35s;grid-column:1/-1;}
+  .playlist-embed{width:100%;height:380px;border-radius:18px;border:none;opacity:0;animation:fadeUp 0.7s ease forwards;animation-delay:0.1s;}
+  @media(max-width:640px){.tracks-grid{grid-template-columns:1fr;}.track-embed:nth-child(7){grid-column:auto;}}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="glow-field">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <nav class="hamburger-nav">
+    <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html" class="nav-link" id="link-home">Home</a>
+      <a href="interests.html" class="nav-link" id="link-interests">Interests</a>
+      <a href="socials.html" class="nav-link" id="link-socials">Socials</a>
+      <a href="music.html" class="nav-link" id="link-music">Music</a>
+    </div>
+  </nav>
+  <div class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="page-eyebrow">What I've Been Listening To</span>
+        <h1>Music</h1>
+      </div>
+      <p class="section-label">Favorite Tracks</p>
+      <div class="tracks-grid">
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/3w3y8KPTfNeOKPiqUTakBh?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/0aPZbnkMoWJaJ5CNVLCj8S?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/6QFCMUUq1T2Vf5sFUXcuQ7?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/0WZqHCoOBXqgCCIsUZLC2a?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/5yJaXWIErrrsjQ3J0eR5aK?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/0jByCc9MS4p34rE3o9Cdmw?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="track-embed" src="https://open.spotify.com/embed/track/2VjqZHM9qZaXRooxAwZfHm?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <p class="section-label">Favorite Playlist</p>
+      <iframe class="playlist-embed" src="https://open.spotify.com/embed/playlist/4SDAxdzBlFEeKNGw6o1hhD?utm_source=generator&theme=0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="mono">© 2026 JAY</span>
+    </div>
+  </footer>
+<script>
+  const b=document.getElementById('burgerBtn'),m=document.getElementById('navMenu');
+  b.addEventListener('click',()=>{b.classList.toggle('open');m.classList.toggle('open');});
+  document.addEventListener('click',(e)=>{if(!b.contains(e.target)&&!m.contains(e.target)){b.classList.remove('open');m.classList.remove('open');}});
+  document.getElementById('link-music').classList.add('active');
+</script>
+</body>
+</html>
